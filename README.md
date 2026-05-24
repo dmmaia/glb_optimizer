@@ -22,8 +22,8 @@ Current Results
 Results vary depending on geometry complexity and texture usage.
 
 Tech Stack
-Node.js
-Express.js
-TypeScript
-glTF Transform
-Draco 3D Compression
+- Node.js
+- Express.js
+- TypeScript
+- glTF Transform
+- Draco 3D Compression
