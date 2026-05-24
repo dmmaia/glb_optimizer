@@ -8,6 +8,7 @@ const currentDir = import.meta.dirname;
 const app = express();
 const port = 3000;
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(currentDir + '/static'))
 app.set('view engine', 'ejs');
 app.set('views', path.join(currentDir, 'views'));
 

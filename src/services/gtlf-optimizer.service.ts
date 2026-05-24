@@ -25,5 +25,5 @@ export default {
     );
 
     return await io.writeBinary(document);
-  }
+   }
 }

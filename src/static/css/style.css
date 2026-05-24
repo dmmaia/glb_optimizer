@@ -1,0 +1,29 @@
+body {
+    color: red;
+}
+
+#content{
+    display: flex;
+    justify-content: center;
+}
+
+#drop_area {
+    border: rgb(255, 69, 0) 2px dashed;
+    height: 25vw;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    border-radius: 10px;
+}
+
+.highlight {
+  border: orangered 3px dashed !important;
+  background-color: rgb(247, 200, 182);
+}
+
+.hidden {
+    display: none;
+}
