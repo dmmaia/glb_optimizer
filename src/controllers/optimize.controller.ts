@@ -1,5 +1,5 @@
 import { type Request, type Response } from 'express';
-import gtlfOptimizerService from '../services/gtlf-optimizer.service.ts'
+import gltfOptimizerService from '../services/gltf-optimizer.service.ts'
 
 export default {
     async uploadFile(req: Request, res: Response){
@@ -21,7 +21,7 @@ export default {
             `attachment; filename="${file.originalname}"`
         );
 
-        const optimized = await gtlfOptimizerService.compressGLBWithDraco(toArrayBufferCopy(file.buffer))
+        const optimized = await gltfOptimizerService.compressGLBWithDraco(toArrayBufferCopy(file.buffer))
 
         const reduction =  ((file.size - Buffer.from(optimized).length) / file.size) * 100;
         console.log(reduction);
