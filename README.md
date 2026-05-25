@@ -5,13 +5,13 @@ A lightweight MVC for optimizing .glb and .gltf 3D models using Draco compressio
 Built with Express.js, TypeScript and glTF Transform.
 
 Features
-Draco mesh compression
-GLB/GLTF upload support
-Binary-safe processing pipeline
-Significant geometry size reduction
-Ready for future texture optimization
-Simple REST API
-Simple Front-end
+- Draco mesh compression
+- GLB/GLTF upload support
+- Binary-safe processing pipeline
+- Significant geometry size reduction
+- Ready for future texture optimization
+- Simple REST API
+- Simple Front-end
 
 Current Results
 
