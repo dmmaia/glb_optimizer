@@ -2,7 +2,12 @@ body {
     color: red;
 }
 
-#content{
+.flex_center{
+    display: flex;
+    justify-content: center;
+}
+
+#file_form{
     display: flex;
     justify-content: center;
 }
@@ -20,10 +25,40 @@ body {
 }
 
 .highlight {
-  border: orangered 3px dashed !important;
+  border: #ff4500 3px dashed !important;
   background-color: rgb(247, 200, 182);
 }
 
 .hidden {
     display: none;
+}
+
+#result{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 50vw;
+    border: rgb(255, 69, 0) 1px solid;
+    background-color: rgb(250, 222, 211);
+    margin-top: 10px;
+}
+#result img {
+    height: 100px;
+    width: 100px;
+}
+#result div {
+    display: block;
+    color: gray;
+}
+#result div span{
+    font-weight: bold;
+    color: red;
+}
+.download-button{
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: bold;
 }

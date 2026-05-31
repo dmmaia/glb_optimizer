@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="content">
-        <form action="/optimize" method="post" enctype="multipart/form-data" id="file_form">
+        <form action="/" method="post" enctype="multipart/form-data" id="file_form">
             
             <label for="file" id="drop_area">
                 <span id="drop_msg">Drag and drop files here, or click to upload</span>
@@ -16,7 +16,24 @@
             </label>
             <input id="file" type="file" name="file" draggable="true" hidden onchange="this.form.submit()">
         </form>
-
+    <div class="flex_center">
+        <% if(optimized) {%>
+            <div id="result">
+                <img src="img/3d-model-icon.png" alt="3d icon">
+                <div>
+                    <p>File Name: <span><%= optimized.filename %></span> </p>
+                    <p>Original Size: <span><%= optimized.originalSize %> KB</span></p>
+                    <p>New Size: <span><%= optimized.finalSize %> KB</span> </p>
+                    <p>Optimization: <span><%= optimized.reduction %>%</span> </p>
+                </div>
+                <div>
+                    <button class="download-button">
+                        Download File
+                    </button>
+                </div>
+            </div>
+        <% } %>
+    </div>
     </div>
     <script src="/js/index.js"></script>
 </body>

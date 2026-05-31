@@ -34,3 +34,22 @@ dropArea.addEventListener('drop', (e) => {
   console.log('Files uploaded:', files);
   form.submit()
 });
+
+function downloadFromBuffer(bufferData, filename, mimeType) {
+  console.log("Test1")
+  const blob = new Blob([bufferData], { type: mimeType });
+  
+  const blobUrl = URL.createObjectURL(blob);
+  
+  const link = document.createElement('a');
+  link.href = blobUrl;
+  link.download = "optimized_"+filename;
+  link.style.display = 'none';
+  
+  document.body.appendChild(link);
+  link.click();
+  
+  document.body.removeChild(link);
+  URL.revokeObjectURL(blobUrl);
+  console.log("Test2")
+}

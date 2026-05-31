@@ -18,10 +18,23 @@ const upload = multer({
 });
 
 app.get('/', (req: Request, res: Response) => {
-  res.render('index');
+  res.render('index', {optimized:null});
 });
 
-app.post('/optimize', upload.single("file") ,optimizeController.uploadFile);
+app.post('/', upload.single("file") , async (req: Request, res: Response)=>{
+  var optimized = await optimizeController.uploadFile(req, res)
+
+  const downloadFile = ()=>{
+    res.contentType(optimized.mimeType);
+      res.setHeader(
+          "Content-Disposition",
+          `attachment; filename="optimized_${optimized.filename}"`
+      );
+    return res.send(optimized.bufferData);
+  }
+
+  res.render('index', {optimized});
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
