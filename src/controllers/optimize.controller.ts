@@ -18,9 +18,10 @@ export default {
 
         const reduction =  ((file.size - Buffer.from(optimized).length) / file.size) * 100;
         console.log(reduction);
+        const base64String = Buffer.from(optimized).toString('base64')
 
         return {
-            bufferData: Buffer.from(optimized),
+            bufferData: base64String,
             filename: file.originalname,
             originalSize: (file.size/1024).toFixed(2),
             finalSize: (Buffer.from(optimized).length/1024).toFixed(2),
