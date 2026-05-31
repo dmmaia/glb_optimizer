@@ -8,9 +8,11 @@ export default {
         if (!file) {
             throw new Error("No file uploaded")
         }
-        if (!file.originalname.match(/\.(glb|gltf)$/i)) {
-            throw new Error("Only .glb and .gltf files are supported")
+        if (!file.originalname.match(/\.(glb)$/i)) {
+            throw new Error("Only .glb files are supported")
         }
+        if(file.size>104857600)
+            throw new Error("The size limit is 100MB")
 
         console.log({
             name: file.originalname,
@@ -29,7 +31,7 @@ export default {
             originalSize: (file.size/1024).toFixed(2),
             finalSize: (Buffer.from(optimized).length/1024).toFixed(2),
             reduction:reduction.toFixed(2),
-            mimeType: file.mimetype
+            mimeType: "model/gltf-binary"
         }
 
     },

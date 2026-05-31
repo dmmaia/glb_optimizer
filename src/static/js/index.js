@@ -37,7 +37,6 @@ dropArea.addEventListener('drop', (e) => {
 
 function downloadFromBuffer(base64, filename, mimeType) {
   const bufferData = base64ToArrayBuffer(base64)
-  console.log("Test1")
   const blob = new Blob([bufferData], { type: mimeType });
   
   const blobUrl = URL.createObjectURL(blob);
@@ -52,7 +51,6 @@ function downloadFromBuffer(base64, filename, mimeType) {
   
   document.body.removeChild(link);
   URL.revokeObjectURL(blobUrl);
-  console.log("Test2")
 }
 
 function base64ToArrayBuffer(base64) {

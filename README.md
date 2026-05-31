@@ -1,12 +1,12 @@
 ## GLB/GLTF Optimizer API
 
-A lightweight MVC for optimizing .glb and .gltf 3D models using Draco compression and texture optimization techniques.
+A lightweight MVC for optimizing .glb and .gltf 3D models using Draco compression and texture optimization techniques.(Supports .glb files only. GLTF support is planned.)
 
 Built with Express.js, TypeScript and glTF Transform.
 
 Features
 - Draco mesh compression
-- GLB/GLTF upload support
+- GLB upload support
 - Binary-safe processing pipeline
 - Significant geometry size reduction
 - Ready for future texture optimization

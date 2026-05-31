@@ -24,7 +24,7 @@ body {
     border-radius: 10px;
 }
 
-.eror_message{
+.error_message{
     display: flex;
     align-items: center;
     justify-content: center;
