@@ -24,6 +24,18 @@ body {
     border-radius: 10px;
 }
 
+.eror_message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    border: rgb(255, 69, 0) 1px solid;
+    color: red;
+    font-weight: bold;
+    background-color: rgb(250, 222, 211);
+    margin-top: 10px;
+}
+
 .highlight {
   border: #ff4500 3px dashed !important;
   background-color: rgb(247, 200, 182);

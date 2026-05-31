@@ -6,7 +6,10 @@ export default {
         const file = req.file;
 
         if (!file) {
-            throw res.status(400).send("No file uploaded");
+            throw new Error("No file uploaded")
+        }
+        if (!file.originalname.match(/\.(glb|gltf)$/i)) {
+            throw new Error("Only .glb and .gltf files are supported")
         }
 
         console.log({

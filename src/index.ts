@@ -2,6 +2,7 @@ import express, { type Request, type Response } from 'express';
 import optimizeController from './controllers/optimize.controller.ts'
 import path from 'path';
 import multer from 'multer'
+import { error } from 'console';
 
 const currentDir = import.meta.dirname;
 
@@ -18,22 +19,17 @@ const upload = multer({
 });
 
 app.get('/', (req: Request, res: Response) => {
-  res.render('index', {optimized:null});
+  res.render('index', {optimized:null, error:null});
 });
 
 app.post('/', upload.single("file") , async (req: Request, res: Response)=>{
-  var optimized = await optimizeController.uploadFile(req, res)
+  try {
+    var optimized = await optimizeController.uploadFile(req, res)
 
-  const downloadFile = ()=>{
-    res.contentType(optimized.mimeType);
-      res.setHeader(
-          "Content-Disposition",
-          `attachment; filename="optimized_${optimized.filename}"`
-      );
-    return res.send(optimized.bufferData);
+    res.render('index', {optimized, error:null});
+  } catch (error:any) {
+    res.render('index', {optimized:null, error:error.message});
   }
-
-  res.render('index', {optimized});
 });
 
 app.listen(port, () => {
