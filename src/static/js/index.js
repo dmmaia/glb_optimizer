@@ -52,6 +52,16 @@ function downloadFromBuffer(base64, filename, mimeType) {
   document.body.removeChild(link);
   URL.revokeObjectURL(blobUrl);
 }
+function downloadFromUrl(filePath){
+  const link = document.createElement('a');
+  link.href = filePath;
+  
+  link.download = filePath.substring(filePath.lastIndexOf('/') + 1);
+  
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
 
 function base64ToArrayBuffer(base64) {
   const uint8Array = Uint8Array.fromBase64(base64);

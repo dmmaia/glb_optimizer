@@ -27,7 +27,7 @@
                     <p>Optimization: <span><%= optimized.reduction %>%</span> </p>
                 </div>
                 <div>
-                    <button class="download-button" onclick='downloadFromBuffer("<%= optimized.bufferData %>", "<%= optimized.filename %>", "<%= optimized.mimeType %>")'>
+                    <button class="download-button" onclick='downloadFromUrl("<%= optimized.urlFile %>")'>
                         Download File
                     </button>
                 </div>
