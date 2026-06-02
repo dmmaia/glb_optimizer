@@ -9,7 +9,7 @@ Features
 - GLB upload support
 - Binary-safe processing pipeline
 - Significant geometry size reduction
-- Ready for future texture optimization
+- Texture compression and resize
 - Simple REST API
 - Simple Front-end
 
@@ -17,8 +17,8 @@ Current Results
 
 | Model         |  Type          | Original Size    | Optimized Size | Reduction |
 |:--------------|:--------------:|-----------------:|:--------------:|----------:|
-| Simple mesh   | (no textures)  | 11 KiB           | 2 KiB          | ~81%      |
-| Character     |  with textures | 273 KiB          | 149.9 KiB      | ~45%      |
+| Simple mesh   | (no textures)  | 11 KB            | 2 KB           | ~81%      |
+| Character     |  with textures | 273 KB           | 103.82 KB      | ~62%      |
 
 Results vary depending on geometry complexity and texture usage.
 
@@ -28,4 +28,5 @@ Tech Stack
 - TypeScript
 - glTF Transform
 - Draco 3D Compression
+- Sharp Texture Compression
 - EJS Front-end
