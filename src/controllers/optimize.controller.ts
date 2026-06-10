@@ -1,5 +1,8 @@
 import { type Request, type Response } from 'express';
 import gltfOptimizerService from '../services/gltf-optimizer.service.ts'
+import { writeFile, mkdir, rm } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import path from 'node:path'
 
 export default {
     async uploadFile(req: Request, res: Response): Promise<UploadFile>{
@@ -25,26 +28,20 @@ export default {
         console.log(reduction);
         const base64String = Buffer.from(optimized).toString('base64')
 
-        const blob = new Blob([ Buffer.from(optimized)], { type: 'application/octet-stream' });
+        const file_name = crypto.randomUUID()+path.extname(file.originalname)
 
-        const form = new FormData();
+        const file_path = "tmp/optimized_files/"
+        await mkdir(file_path, { recursive: true });
+        await writeFile(file_path+file_name, Buffer.from(optimized));
 
-        form.append('files[]', blob, file.originalname); 
-
-        const response = await fetch('https://uguu.se/upload', {
-            method: 'POST',
-            body: form,
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-            }
-        });
-
-        const data = await response.json();
+        setTimeout(()=>{
+            rm(file_path+file_name,{force:true})
+        }, 900000)
 
         return {
             bufferData: base64String,
             filename: file.originalname,
-            urlFile: data.files[0].url,
+            urlFile: "/download/"+file_name,
             originalSize: (file.size/1024).toFixed(2),
             finalSize: (Buffer.from(optimized).length/1024).toFixed(2),
             reduction:reduction.toFixed(2),
@@ -52,6 +49,24 @@ export default {
         }
 
     },
+
+    async downloadFile(req: Request, res: Response){
+        const filename = req.params.id+"";
+        if(!filename)
+            return res.status(400).send("File ID is required");
+
+        const filePath = path.join(process.cwd()+"/tmp/optimized_files/", filename)
+
+        if(!existsSync(filePath)){
+            return res.status(404).send("File not found or expired")
+        }
+
+        res.download(filePath, filename, (err) => {
+            if(err){
+                return res.status(500).send("Could nod complete download.")
+            }
+        })
+    }
 }
 
 function toArrayBufferCopy(buf: Buffer): ArrayBuffer {

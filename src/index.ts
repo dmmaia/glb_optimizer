@@ -28,9 +28,14 @@ app.post('/', upload.single("file") , async (req: Request, res: Response)=>{
 
     res.render('index', {optimized, error:null});
   } catch (error:any) {
+    console.log(error)
     res.render('index', {optimized:null, error:error.message});
   }
 });
+
+app.get('/download/:id', (req: Request, res: Response) => {
+  return optimizeController.downloadFile(req, res)
+})
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
