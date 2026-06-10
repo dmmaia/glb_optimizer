@@ -25,6 +25,7 @@
                     <p>Original Size: <span><%= optimized.originalSize %> KB</span></p>
                     <p>New Size: <span><%= optimized.finalSize %> KB</span> </p>
                     <p>Optimization: <span><%= optimized.reduction %>%</span> </p>
+                    <p>Textures: <span><%= optimized.numberOfTextures %></span> </p>
                 </div>
                 <div>
                     <button class="download-button" onclick='downloadFromUrl("<%= optimized.urlFile %>")'>

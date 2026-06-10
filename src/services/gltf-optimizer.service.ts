@@ -9,7 +9,7 @@ const decoderModule = await draco3d.createDecoderModule();
 
 export default {
 
-  async compressGLBWithDraco(glbBuffer: ArrayBuffer): Promise<Uint8Array> {
+  async compressGLBWithDraco(glbBuffer: ArrayBuffer): Promise<OptimizedResponse> {
    
     const io = new NodeIO().registerExtensions([KHRDracoMeshCompression]).registerDependencies({
       'draco3d.encoder': encoderModule,
@@ -45,6 +45,13 @@ export default {
       }),
     );
 
-    return await io.writeBinary(document);
+    const optimized = await io.writeBinary(document);
+
+    return {optimized, numberOfTextures: textures.length}
    }
+}
+
+interface OptimizedResponse {
+    optimized: Uint8Array;
+    numberOfTextures: number;
 }

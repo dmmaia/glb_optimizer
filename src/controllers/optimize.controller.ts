@@ -22,7 +22,7 @@ export default {
             size: file.size,
         });
 
-        const optimized = await gltfOptimizerService.compressGLBWithDraco(toArrayBufferCopy(file.buffer))
+        const {optimized, numberOfTextures} = await gltfOptimizerService.compressGLBWithDraco(toArrayBufferCopy(file.buffer))
 
         const reduction =  ((file.size - Buffer.from(optimized).length) / file.size) * 100;
         console.log(reduction);
@@ -45,7 +45,8 @@ export default {
             originalSize: (file.size/1024).toFixed(2),
             finalSize: (Buffer.from(optimized).length/1024).toFixed(2),
             reduction:reduction.toFixed(2),
-            mimeType: "model/gltf-binary"
+            mimeType: "model/gltf-binary",
+            numberOfTextures
         }
 
     },
@@ -86,4 +87,5 @@ interface UploadFile {
     finalSize: string;
     reduction: string;
     mimeType: string;
+    numberOfTextures: number;
 }
